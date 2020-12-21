@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
+import * as Feather from 'feather-icons';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pokusaj';
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
+
+  
+  //public startingPlayer:string= "X";
+  
+  ngAfterViewInit() {
+    Feather.replace();
+  }
 }

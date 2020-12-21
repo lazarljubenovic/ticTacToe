@@ -1,0 +1,58 @@
+button {
+  
+  margin-bottom: 2px;
+  margin-left: 2px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  display: flex;
+  text-align: center;
+  justify-items: center;
+
+  height: 100%;
+  width: 100%;
+  background-color:rgb(88,88,88);
+}
+
+.clickedTrue {
+ pointer-events: none;
+}
+button:hover{
+  background-color: honeydew;
+}
+.wholeCell {
+  padding: 0;
+  border: none;
+  outline: none;
+  background: none;
+  display: flex;
+  text-align: center;
+  justify-items: center;
+
+  height: 100%;
+  width: 100%;
+  background-color:rgb(88,88,88);
+}
+.wholeCell:hover {
+  background-color: honeydew;
+}
+#iconX {
+  width: 100%;
+  height: 95%;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: rgb(1, 255, 1);
+}
+
+#iconO{
+  width: 100%;
+  height: 95%;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: rgb(255, 1, 1);
+}
