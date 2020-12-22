@@ -1,4 +1,4 @@
-
+$base-width: 400px;
 .featherC {
     width: 24px;
     height: 24px;
@@ -18,9 +18,42 @@
     fill: green;
   }
   h1 {
-    width: 400px;
+    //width: $base-width;
     text-align: center;
     background-color: black;
     color: white;
     margin-bottom: 0px;
+    margin-top:0px;
+  }
+  nav
+  {
+   //width:$base-width;
+  }
+  ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    background-color:white; 
+  }
+  li {
+    float:left;
+     
+  }
+  .nav-itemR{
+    float:right;
+    
+  }
+  
+  li a {
+   display:block;
+   padding: 6px 14px;
+   background-color: white;
+   text-align:center;
+   text-decoration: none;
+   color:black;
+    
+  }
+  li a:hover{
+    background-color: silver;
   }

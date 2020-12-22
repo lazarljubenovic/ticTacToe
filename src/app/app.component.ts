@@ -11,9 +11,9 @@ export class AppComponent {
     throw new Error('Method not implemented.');
   }
 
-  
+
   //public startingPlayer:string= "X";
-  
+
   ngAfterViewInit() {
     Feather.replace();
   }

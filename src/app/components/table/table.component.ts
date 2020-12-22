@@ -15,7 +15,9 @@ export class TableComponent {
   public displayMessage: string = "";
   public nextPlayer: string = "X";
 
-  constructor(private calculation_Service: CalculationService) { }
+  constructor(private calculation_Service: CalculationService) {
+    this.calculation_Service.resetCalc();
+  }
 
   @ViewChildren(CellComponent)
   childCells!: QueryList<CellComponent>;
