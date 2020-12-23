@@ -1,38 +1,33 @@
 button {
   background-color: #fafafa;
-  color:black;
+  color: black;
   padding: 2px 2px;
   text-align: center;
-  outline:none;
+  outline: none;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
 }
-button:hover{
-  background-color:silver;
+button:hover {
+  background-color: silver;
 }
 div.backGround {
-  background-color: rgb(88,88,88);
+  background-color: rgb(88, 88, 88);
   display: flex;
   flex-direction: column;
   text-align: center;
   color: white;
   height: 540px;
-  //width: 400px;
 }
 div.tableContainer {
   justify-items: center;
   text-align: center;
-  //background-color: red;
 }
-
 table {
   margin: 0 auto;
-  
   height: 300px;
   width: 300px;
   table-layout: fixed;
-
   border-collapse: collapse;
   border-style: hidden;
 }
@@ -40,17 +35,7 @@ table td {
   padding: 1rem;
   overflow: hidden;
   height: 95px;
- width: 90px;
+  width: 90px;
   border: 3px solid white;
-
   text-align: center;
-}
-#icon {
-  width: 50px;
-  height: 50px;
-  stroke: white;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: rgb(1, 255, 1);
 }

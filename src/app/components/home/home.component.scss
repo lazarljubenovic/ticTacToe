@@ -1,28 +1,22 @@
-$base-size:400px;
-div{
-    //width:$base-size;
-}
-h3
-{
-    //width:$base-size;
+$base-size: 400px;
+h3 {
     text-align: center;
 }
-.buttonWrapper{
-    margin-top:15px;
+.buttonWrapper {
+    margin-top: 15px;
     text-align: center;
 }
-
 button {
     background-color: #fafafa;
-    color:black;
+    color: black;
     padding: 2px 2px;
     text-align: center;
-    outline:none;
+    outline: none;
     font-weight: bold;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-  }
-  button:hover{
-    background-color:silver;
-  }
+}
+button:hover {
+    background-color: silver;
+}

@@ -8,9 +8,8 @@ import { Button } from 'protractor';
   styleUrls: ['./cell.component.scss']
 })
 export class CellComponent {
-  public isClick: boolean = false;
-  public btn?: HTMLButtonElement;
-  public m: string = "";
+  public isClick = false;
+  public currentPlayer = ''; // X or O
 
   @Input()
   public sign!: string;
@@ -18,45 +17,35 @@ export class CellComponent {
   @Output()
   cellClicked = new EventEmitter();
 
-  @ViewChild('btn') buttn!: HTMLButtonElement;
+  @ViewChild('buttonCell') button!: HTMLButtonElement;
 
   reset() {
-    this.m = ""
+    this.currentPlayer = '';
     this.isClick = false;
-    this.buttn.disabled = false;
+    this.button.disabled = false;
   }
   disableCell() {
     this.isClick = true;
-    this.buttn.disabled = true;
+    this.button.disabled = true;
   }
   refresh() {
     Feather.replace();
   }
   isClicked(): boolean {
-    this.refresh()
+    this.refresh();
     return this.isClick;
   }
   isX(): boolean {
-    return this.m === "X" ? true : false;
+    return this.currentPlayer === 'X' ? true : false;
   }
   isO(): boolean {
-    return this.m === "O" ? true : false;
+    return this.currentPlayer === 'O' ? true : false;
   }
   updateCellState($event: any) {
     this.isClick = true;
-    this.buttn.disabled = true;
-    this.m = this.sign;
+    this.button.disabled = true;
+    this.currentPlayer = this.sign;
     Feather.replace();
     this.cellClicked.emit();
   }
-
 }
-
-/*@HostListener("click", ["$event.target"])
-clicked(e: HTMLButtonElement) {
-  alert(this.sign);
- // e.disabled = true;
-  this.isClick = true;
-  Feather.replace();
-  this.cellClicked.emit();
-}*/

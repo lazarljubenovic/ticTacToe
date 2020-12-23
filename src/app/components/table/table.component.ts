@@ -10,13 +10,14 @@ import { CellComponent } from '../cell/cell.component';
 
 export class TableComponent {
   public numbers = Array(3).fill(0);
-  public counter: number = 0;
-  public winner: boolean = false;
-  public displayMessage: string = "";
-  public nextPlayer: string = "X";
+  public tableMatrix: string[][] = [];
+  public turnCounter = 0;
+  public winner = false;
+  public displayMessage = '';
+  public nextPlayer = 'X';
 
-  constructor(private calculation_Service: CalculationService) {
-    this.calculation_Service.resetCalc();
+  constructor(private calculationService: CalculationService) {
+    this.resetTableMatrix();
   }
 
   @ViewChildren(CellComponent)
@@ -28,31 +29,37 @@ export class TableComponent {
   disableCells() {
     this.childCells.forEach(c => c.disableCell());
   }
-
+  resetTableMatrix() {
+    for (let i = 0; i < 3; i++) {
+      this.tableMatrix[i] = Array(3).fill('');
+    }
+  }
   resetGame($event: any) {
-    this.counter = 0;
+    this.turnCounter = 0;
     this.winner = false;
-    this.displayMessage = ""
-    this.nextPlayer = "X"
+    this.displayMessage = '';
+    this.nextPlayer = 'X';
+    this.resetTableMatrix();
     this.resetCells();
-    this.calculation_Service.resetCalc();
   }
   cellIsClicked(row: number, column: number) {
-    this.counter++
-    if (this.calculation_Service.checkWinner(row, column, this.nextPlayer)) {
-      alert("imamo pobednika");
-      this.winner = true;
-      this.displayMessage = "Winner is " + this.nextPlayer
-      this.disableCells();
-      return;
+    this.turnCounter++;
+    this.tableMatrix[row][column] = this.nextPlayer;
+    if (this.turnCounter > 4) {
+      const getWinner = this.calculationService.getWinnerIfThereIs(this.tableMatrix, row, column);
+      if (getWinner !== 'N') {  // N is returned when there is no winner
+        this.winner = true;
+        this.displayMessage = 'Winner is ' + this.nextPlayer;
+        this.disableCells();
+        return;
+      }
+      if (this.turnCounter === 9) {
+        this.winner = true;
+        this.displayMessage = 'Its a tie';
+        return;
+      }
     }
-    if (this.counter == 9) {
-      alert("tie")
-      this.winner = true;
-      this.displayMessage = "Its a tie"
-      return;
-    }
-    this.nextPlayer = this.nextPlayer === "X" ? "O" : "X";
+    this.nextPlayer = this.nextPlayer === 'X' ? 'O' : 'X';
   }
 }
 

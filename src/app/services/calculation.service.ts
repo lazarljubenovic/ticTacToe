@@ -1,44 +1,53 @@
 import { Injectable } from '@angular/core';
+import { table } from 'console';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalculationService {
-  public cols: number[][] = [];
-  public diagonals: number[][] = [];
-  public rows: number[][] = [];
-  constructor() {
-    this.resetCalc()
-  }
-
-  print() {
-    this.rows[0][1] = 2;
-    alert(this.rows.toString());
-  }
-  resetCalc() {
+   // returns X,O or N if there is no winner
+  getWinnerIfThereIs(tableMatrix: string[][], row: number, col: number): string {
+    // check row
     for (let i = 0; i < 2; i++) {
-      this.rows[i] = Array(3).fill(0);
-      this.cols[i] = Array(3).fill(0);
-      this.diagonals[i] = Array(2).fill(0);
+      if (tableMatrix[row][i] === '' || tableMatrix[row][i + 1] === '' || tableMatrix[row][i] !== tableMatrix[row][i + 1]) {
+        break;
+      }
+      if (i === 1) {
+        return tableMatrix[row][col];
+      }
     }
-  }
-
-  checkWinner(row: number, col: number, nextPl: string) {
-    let sign: number = nextPl == "X" ? 0 : 1;
-
-    this.rows[sign][row]++;
-    this.cols[sign][col]++;
-    if (this.rows[sign][row] == 3 || this.cols[sign][col] == 3) return true;
-
-    if (this.rows[sign][row] == 3 || this.cols[sign][col] == 3) return true;
-
-    if (row == col) this.diagonals[sign][0]++;
-
-    if (row + col == 2) this.diagonals[sign][1]++;
-
-    if (this.diagonals[sign][0] == 3 || this.diagonals[sign][1] == 3)
-      return true;
-
-    return false;
+    // check column
+    for (let i = 0; i < 2; i++) {
+      if (tableMatrix[i][col] === '' || tableMatrix[i + 1][col] === '' || tableMatrix[i][col] !== tableMatrix[i + 1][col]) {
+        break;
+      }
+      if (i === 1) {
+        return tableMatrix[row][col];
+      }
+    }
+    // check diagonal
+    if (row === col) {
+      for (let i = 0; i < 2; i++) {
+        if (tableMatrix[i][i] === '' || tableMatrix[i + 1][i + 1] === '' || tableMatrix[i][i] !== tableMatrix[i + 1][i + 1]) {
+          break;
+        }
+        if (i === 1) {
+          return tableMatrix[row][col];
+        }
+      }
+    }
+    // check antiDia
+    if (row + col === 2) {
+      for (let i = 0; i < 2; i++) {
+        // tslint:disable-next-line:max-line-length
+        if (tableMatrix[i][2 - i] === '' || tableMatrix[i + 1][2 - i - 1] === '' || tableMatrix[i][2 - i] !== tableMatrix[i + 1][2 - i - 1]) {
+          break;
+        }
+        if (i === 1) {
+          return tableMatrix[row][col];
+        }
+      }
+    }
+    return 'N'; // there is no winner
   }
 }

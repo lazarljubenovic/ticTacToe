@@ -10,10 +10,7 @@ export class AppComponent {
   title(title: any) {
     throw new Error('Method not implemented.');
   }
-
-
-  //public startingPlayer:string= "X";
-
+  // tslint:disable-next-line:use-lifecycle-interface
   ngAfterViewInit() {
     Feather.replace();
   }
